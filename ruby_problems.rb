@@ -30,3 +30,15 @@ def single_number(nums)
 
 
 end
+
+
+def str_str(haystack, needle)
+
+  return 0 if haystack.empty? && needle.empty?
+
+  haystack.split('').each_index do |i|
+    return i if haystack[i...i + needle.length] === needle
+  end
+
+  -1
+end
