@@ -20,3 +20,16 @@ var maxDepth = function(root) {
     return result;
 
 };
+
+var isValidBST = function(root, upperBound=Infinity, lowerBound=-Infinity) {
+  if (!root) {
+    return true;
+  }
+
+  if (root.val >= upperBound || root.val <= lowerBound) {
+      return false;
+  }
+
+  return isValidBST(root.left, Math.min(upperBound, root.val), lowerBound) &&
+         isValidBST(root.right, upperBound, Math.max(lowerBound, root.val));
+};
