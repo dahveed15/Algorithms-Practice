@@ -33,3 +33,9 @@ var isValidBST = function(root, upperBound=Infinity, lowerBound=-Infinity) {
   return isValidBST(root.left, Math.min(upperBound, root.val), lowerBound) &&
          isValidBST(root.right, upperBound, Math.max(lowerBound, root.val));
 };
+
+var rotate = function(nums, k) {
+
+  nums.unshift(...nums.splice(nums.length - k, k));
+
+};
