@@ -39,3 +39,18 @@ var rotate = function(nums, k) {
   nums.unshift(...nums.splice(nums.length - k, k));
 
 };
+
+function isIPv4Address(inputString) {
+  let nums = inputString.split('.');
+
+  if(nums.length !== 4) {
+    return false;
+  }
+
+  //this is a check for if there's extra '.' in the string
+  if(nums.some(el => el === '')) {
+    return false;
+  }
+
+  return nums.every(num => num >= 0 && num <= 255);
+}
