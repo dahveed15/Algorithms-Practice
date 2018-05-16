@@ -54,3 +54,30 @@ function isIPv4Address(inputString) {
 
   return nums.every(num => num >= 0 && num <= 255);
 }
+
+var groupAnagrams = function(strs) {
+
+  let obj = {};
+
+  for(let i = 0; i < strs.length; i++) {
+      //give me a key for a sorted word (e.g. 'eat' => 'aet'. then nothing else will be make for a key like 'ate' or 'tea')
+      //this key will be what I push all of the anagrams in
+      if(!(obj[sortedKey(strs[i])])) {
+          obj[sortedKey(strs[i])] = [];
+      }
+  }
+
+  for(let i = 0; i < strs.length; i++) {
+      //each string will know which array to go in because its sorted value will be one of the keys from the last loop
+      obj[sortedKey(strs[i])].push(strs[i]);
+  }
+
+  //now get rid of the keys and output a nested array of the anagrams
+  return Object.values(obj);
+
+
+};
+
+function sortedKey(str) {
+    return str.split('').sort().join('');
+}
