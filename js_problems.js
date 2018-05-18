@@ -81,3 +81,17 @@ var groupAnagrams = function(strs) {
 function sortedKey(str) {
     return str.split('').sort().join('');
 }
+
+
+
+var maxProfit = function(prices) {
+    let total = 0;
+
+    for(var i = 0; i < prices.length; i++) {
+        if(prices[i] < prices[i+1]) {
+            total += prices[i+1] - prices[i];
+        }
+    }
+
+    return total;
+};
