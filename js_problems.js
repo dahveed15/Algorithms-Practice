@@ -95,3 +95,19 @@ var maxProfit = function(prices) {
 
     return total;
 };
+
+var containsDuplicate = function(nums) {
+    if (nums.length === 0) {
+        return false;
+    }
+
+    let sortedArr = nums.sort();
+
+    for(let i = 0; i < sortedArr.length - 1; i++) {
+      if (sortedArr[i] === sortedArr[i+1]) {
+          return true;
+      }
+    }
+
+   return false;
+};
