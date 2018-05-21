@@ -118,3 +118,17 @@ def is_valid_sudoku(board)
 
   true
 end
+
+def intersect(nums1, nums2)
+
+    result = []
+
+    nums1.each do |num|
+      if nums2.include?(num)
+        result.push(num)
+        nums2.delete_at(nums2.find_index(num))
+      end
+    end
+
+    result
+end
