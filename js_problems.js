@@ -111,3 +111,35 @@ var containsDuplicate = function(nums) {
 
    return false;
 };
+
+function checkEdit(str1, str2) {
+
+  let obj1 = {};
+  let obj2 = {};
+
+  for(let i = 0; i < str1.length; i++) {
+    if(!obj1[str1[i]]) {
+      obj1[str1[i]] = 1;
+    }
+  }
+
+  for(let i = 0; i < str2.length; i++) {
+    if(!obj2[str2[i]]) {
+      obj2[str2[i]] = 1;
+    }
+  }
+
+  let charactersInBothStrings = 0;
+
+  let maxWord = str1.length > str2.length ? str1 : str2;
+
+  for(let i = 0; i < maxWord.length; i++) {
+    //track all of the letters in common
+    if((obj1[maxWord[i]] && obj2[maxWord[i]])) {
+      charactersInBothStrings++;
+    }
+  }
+
+  //there can be at most 1 edit
+  return maxWord.length - charactersInBothStrings < 2;
+}
