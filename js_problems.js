@@ -143,3 +143,28 @@ function checkEdit(str1, str2) {
   //there can be at most 1 edit
   return maxWord.length - charactersInBothStrings < 2;
 }
+
+function stringCompression(str) {
+
+  let obj = {};
+
+  for(let i = 0; i < str.length; i++) {
+    if(!obj[str[i]]) {
+      obj[str[i]] = 1;
+    }
+  }
+
+  let result = '';
+
+  for(let i = 0; i < str.length; i++) {
+    if(str[i] === str[i + 1])  {
+      obj[str[i]]++;
+    } else {
+        result += str[i] + obj[str[i]];
+        obj[str[i]] = 1;
+    }
+  }
+
+  return result.length > str.length ? str : result;
+
+}
