@@ -168,3 +168,24 @@ function stringCompression(str) {
   return result.length > str.length ? str : result;
 
 }
+
+var numJewelsInStones = function(J, S) {
+    //make an object with key values for J
+    //iterate through S and increase the counter if that key exists in J
+
+    let obj = {};
+
+    for(let i = 0; i < J.length; i++) {
+        obj[J[i]] = 1;
+    }
+
+    let count = 0;
+
+    for(let i = 0; i < S.length; i++) {
+        if(obj[S[i]]) {
+            count++;
+        }
+    }
+
+    return count;
+};
