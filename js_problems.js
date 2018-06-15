@@ -189,3 +189,57 @@ var numJewelsInStones = function(J, S) {
 
     return count;
 };
+
+
+//matrix = [[1, 0, 0, 2],
+          // [0, 5, 0, 1],
+          // [0, 0, 3, 5]]
+
+//constructSubmatrix(matrix, [1], [0, 2]) => [[0, 2],
+                                          // [0, 5]]
+
+function constructSubmatrix(matrix, rowsToDelete, columnsToDelete) {
+
+  let subRows = [];
+
+  for(let i = 0; i < matrix.length; i++) {
+
+    if(rowsToDelete.length === 0 || i !== rowsToDelete[0]) {
+      subRows.push(matrix[i]);
+    } else {
+      rowsToDelete.shift();
+    }
+  }
+
+
+  let result = [];
+
+  //need the amount of [] that I got from the subRows to add the elements that aren't in the deleted columns
+  for(let i = 0; i < subRows.length; i++) {
+    result.push([]);
+  }
+
+  for(let i = 0; i < subRows.length; i++) {
+    for(let j = 0; j < subRows[i].length; j++) {
+      if(!columnsToDelete.includes(j)) {
+        result[i].push(subRows[i][j]);
+      }
+    }
+  }
+
+  return result;
+}
+
+function myFlatten(arr) {
+  let result = [];
+
+  for(let i = 0; i < arr.length; i++) {
+    if(arr[i] instanceof Array) {
+      result = result.concat(myFlatten(arr[i]));
+    } else {
+      result.push(arr[i]);
+    }
+  }
+
+  return result;
+}
