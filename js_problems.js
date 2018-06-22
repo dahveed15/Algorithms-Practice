@@ -243,3 +243,27 @@ function myFlatten(arr) {
 
   return result;
 }
+
+function permute(permutation) {
+      let result = [permutation.slice()];
+      let c = new Array(permutation.length).fill(0);
+      let i = 1;
+	  let k;
+      let p;
+
+  while (i < length) {
+    if (c[i] < i) {
+      k = i % 2 && c[i];
+      p = permutation[i];
+      permutation[i] = permutation[k];
+      permutation[k] = p;
+      ++c[i];
+      i = 1;
+      result.push(permutation.slice());
+    } else {
+      c[i] = 0;
+      ++i;
+    }
+  }
+  return result;
+}
