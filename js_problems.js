@@ -246,24 +246,30 @@ function myFlatten(arr) {
 
 function permute(permutation) {
   let result = [permutation.slice()];
-  let c = new Array(permutation.length).fill(0);
+  let arr = new Array(permutation.length).fill(0);
+  let oldSpot;
+  let newSpot;
   let i = 1;
-  let k;
-  let p;
 
-  while (i < permutation.length) {
-    if (c[i] < i) {
-      k = i % 2 && c[i];
-      p = permutation[i];
-      permutation[i] = permutation[k];
-      permutation[k] = p;
-      c[i]++;
+  while(i < permutation.length) {
+    if(arr[i] < i) {
+      newSpot = i % 2 !== 0 ? arr[i] : i % 2;
+
+      oldSpot = permutation[i];
+
+      //permutation is constantly being overwritten
+      permutation[i] = permutation[newSpot];
+      permutation[newSpot] = oldSpot;
+
+      //we need this so that we can basically keep reverting positions of arr back to 0
+      arr[i]++;
       i = 1;
       result.push(permutation.slice());
     } else {
-      c[i] = 0;
+      arr[i] = 0;
       i++;
     }
   }
+
   return result;
 }
