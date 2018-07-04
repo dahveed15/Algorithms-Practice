@@ -273,3 +273,37 @@ function permute(permutation) {
 
   return result;
 }
+
+function expandedForm(num) {
+  // Your code here
+
+  if(num < 10) {
+    return num + '';
+  }
+
+  let strNum = num + '';
+
+  let endPoint = strNum.length - 1;
+
+  //70304
+    //enpoint = 4
+    //7 * 10 ^ 4 = 70000
+  //skip if strNum[i] === '0'
+    //this way, we only focus on the 7, 3, and 4
+
+  //70000 + => 300 + => 4
+
+  let result = '';
+
+  for(let i = 0; i < strNum.length; i++) {
+    if(strNum[i] === '0') {
+      continue;
+    }
+
+    let n = parseInt(strNum[i]) * Math.pow(10, endPoint - i);
+    result += n + ' + ';
+  }
+
+  //chop off the ' + ' part at the end
+  return result.slice(0, result.length - 3);
+}
