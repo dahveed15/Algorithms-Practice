@@ -307,3 +307,34 @@ function expandedForm(num) {
   //chop off the ' + ' part at the end
   return result.slice(0, result.length - 3);
 }
+
+//Equal Sides of An Array
+function findEvenIndex(arr)
+{
+
+//case for last example in the description
+  // You are given the array {20,10,-80,10,10,15,35}
+  // At index 0 the left side is {}
+  // The right side is {10,-80,10,10,15,35}
+  // They both are equal to 0 when added. (Empty arrays are equal to 0 in this problem)
+  // Index 0 is the place where the left side and right side are equal.
+  if((arr.reduce((acc, el) => acc + el) === 0) || (arr.length === 0)) {
+    return 0;
+  }
+
+  //start the index at 1
+  //we don't need to check the last element of the array because there's nothing to the right of it
+  for(let i = 1; i < arr.length - 1; i++) {
+    let leftSlice = arr.slice(0, i);
+    //the spot after the index to the end of the array
+    let rightSlice = arr.slice(i+1);
+
+    //check if the sums of the left and right slices of the index we're on are equal
+    if(leftSlice.reduce((acc,el) => acc + el) === rightSlice.reduce((acc,el) => acc + el)) {
+      return i;
+    }
+  }
+
+  //if nothing is found, return -1
+  return -1;
+}
