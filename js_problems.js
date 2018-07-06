@@ -338,3 +338,33 @@ function findEvenIndex(arr)
   //if nothing is found, return -1
   return -1;
 }
+
+
+function listSquared(m, n) {
+    // your code
+    let result = [];
+
+    for(let i = m; i <= n; i++) {
+      if(divisors(i)) {
+        result.push(divisors(i));
+      }
+    }
+
+    return result;
+}
+
+function divisors(num) {
+
+  let nums = [];
+
+  for(let i = 1; i <= num; i++) {
+    if(num % i === 0) {
+      nums.push(i);
+    }
+  }
+
+  let divisorSum = nums.map(el => Math.pow(el, 2)).reduce((acc, el) => acc + el);
+
+  return Math.sqrt(divisorSum) % 1 === 0 ? [num, divisorSum] : null;
+
+}
