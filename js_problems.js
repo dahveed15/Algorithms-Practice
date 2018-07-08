@@ -368,3 +368,42 @@ function divisors(num) {
   return Math.sqrt(divisorSum) % 1 === 0 ? [num, divisorSum] : null;
 
 }
+
+//strip comments
+function solution(input, markers){
+
+ //split on "\n"
+
+ let lines = input.split('\n');
+
+ return lines.map(line => checkLine(line, markers)).join('\n');
+}
+
+function checkLine(str, markers) {
+
+//iteratate and add result string
+ //if we run across a marker return string immediately
+ //else return it out of the loop
+
+  let obj = {};
+
+  for(let i = 0; i < markers.length; i++) {
+    if(!obj[markers[i]]) {
+      obj[markers[i]] = true;
+    }
+  }
+
+  let result = '';
+
+  for(let i = 0; i < str.length; i++) {
+    if(obj[str[i]]) {
+      //we need to filter out everything not equal to empty string to strip away white space
+      return result.split(' ').filter(el => el !== '').join(' ');
+    } else {
+      result += str[i];
+    }
+  }
+
+  //we need to filter out everything not equal to empty string to strip away white space
+  return result.split(' ').filter(el => el !== '').join(' ');
+}
