@@ -407,3 +407,20 @@ function checkLine(str, markers) {
   //we need to filter out everything not equal to empty string to strip away white space
   return result.split(' ').filter(el => el !== '').join(' ');
 }
+
+var moveZeroes = function(nums) {
+
+    let len = nums.length;
+
+    for (let i = 0; i < len; i++) {
+        //[151, 0, 234, 21, 0, 35, 0] => [151, 234, 21, 0, 35, 0, 0] => [151, 234, 21, 35, 0, 0, 0] => [151, 234, 21, 35, 0, 0, 0]
+    	if (nums[i] == 0) {
+    		nums.splice(i, 1);
+    		nums.push(0);
+            i--;
+            //decrease the end to reach the point of no zeroes
+            len--;
+    	}
+    }
+
+};
