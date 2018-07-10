@@ -424,3 +424,37 @@ var moveZeroes = function(nums) {
     }
 
 };
+
+//we need to use result in both methods, so we put it in the outer scope so that in can be updated in both methods
+let result;
+
+var sumOfLeftLeaves = function(root) {
+
+    //start it at 0, and then it will be updated in the dfs method
+    result = 0;
+
+    //case for empty tree
+    if(!root) {
+        return 0;
+    }
+
+    dfsTree(root, false);
+
+    return result;
+};
+
+function dfsTree(node, leftFlag) {
+
+    if(!node) {
+        return;
+    }
+
+    //if we reach a left node with no children, add the result
+    if(!node.left && !node.right && leftFlag) {
+        result += node.val;
+    }
+
+    //tack on the true for each left path recursively to see if we've reached the end of it
+    dfsTree(node.left, true);
+    dfsTree(node.right, false);
+}
