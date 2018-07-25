@@ -458,3 +458,29 @@ function dfsTree(node, leftFlag) {
     dfsTree(node.left, true);
     dfsTree(node.right, false);
 }
+
+var kthSmallest = function(root, k) {
+
+  //traverse the tree and add everything to an array
+  //sort the array and return array[k - 1]
+
+  let elements = [];
+
+  function dfs(node) {
+      if(!node) {
+          return;
+      }
+
+      elements.push(node.val);
+
+      dfs(node.left);
+      dfs(node.right);
+  }
+
+  dfs(root);
+
+  let sortedElements = elements.sort(function(a,b) { return a - b; });
+
+  return sortedElements[k - 1];
+
+};
