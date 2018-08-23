@@ -479,3 +479,26 @@ function getAllSubsets(arr) {
     [[]]
   );
 }
+
+function flattenObject(nested) {
+  let obj = {};
+
+  for (var char in nested) {
+    //second conditional is for an empty object
+    if (
+      typeof nested[char] !== 'object' ||
+      Object.keys(nested[char]).length === 0
+    ) {
+      obj[char] = nested[char];
+    } else {
+      let inner = flattenObject(nested[char]);
+      let concatenatedChar = char;
+
+      for (var innerChar in inner) {
+        obj[concatenatedChar + '.' + innerChar] = inner[innerChar];
+      }
+    }
+  }
+
+  return obj;
+}
