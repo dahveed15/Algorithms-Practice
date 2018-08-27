@@ -502,3 +502,52 @@ function flattenObject(nested) {
 
   return obj;
 }
+
+//annoying codefights challenge!
+function charLocation(tex, wid, ch) {
+  let res = [];
+  let strArr = reformatStr(tex, wid);
+
+  for (let i = 0; i < strArr.length; i++) {
+    for (let j = 0; j < strArr[i].length; j++) {
+      if (strArr[i][j] === ch) {
+        result.push([i, j]);
+      }
+    }
+  }
+
+  return res;
+}
+
+function reformatStr(str, width) {
+  let arr = [];
+
+  if (str.length < width) {
+    return [str];
+  }
+
+  for (let i = 0; i < str.length; i += width) {
+    arr.push(str.slice(i, i + width));
+  }
+
+  let formattedArr = arr.map((s, idx) => {
+    return idx % 2 !== 0
+      ? s
+          .split('')
+          .reverse()
+          .join('')
+      : str;
+  });
+
+  let lastStr = formattedArr[formattedArr.length - 1];
+  let lastIdx = formattedArr.length - 1;
+
+  if (lastStr.length < width && lastIdx % 2 !== 0) {
+    while (lastStr.length !== width) {
+      lastStr = ' ' + lastStr;
+    }
+    formattedArr[formattedArr.length - 1] = lastStr;
+  }
+
+  return formattedArr;
+}
